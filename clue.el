@@ -41,6 +41,7 @@
 ;;;; Libraries
 
 (require 'rx)
+(require 'subr-x)
 
 ;;;; User options
 
