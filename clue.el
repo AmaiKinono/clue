@@ -79,7 +79,7 @@ major mode is."
 ;;;; Internals
 
 (defvar clue--link-regexp
-  (rx "#[" (* (not (or "[" "]"))) "]")
+  (rx "#[" (* (not (any "[" "]"))) "]")
   "Regexp to match links.")
 
 ;; Suppress the byte-compile warning.
@@ -152,7 +152,7 @@ to prevent miss caused by line truncation inside the clues."
       (widen)
       (goto-char (point-min))
       (when (re-search-forward (rx "#[:meta:root:"
-                                   (group (+ (not (or "[" "]"))))
+                                   (group (+ (not (any "[" "]"))))
                                    "]")
                                nil t)
         (match-string 1)))))
@@ -166,7 +166,7 @@ See `clue--copied-location' to know the returned data."
     (let ((pt (point)))
       (goto-char (line-beginning-position))
       (when (and (re-search-forward (rx "#["
-                                        (group (+ (not (or "[" "]"))))
+                                        (group (+ (not (any "[" "]"))))
                                         ":L"
                                         (group (+ digit))
                                         "]")
