@@ -207,8 +207,7 @@ See `clue--copied-location' to know the form of LOCATION."
   (let ((file (or (buffer-file-name)
                   (user-error "Buffer is not visiting a file")))
         (project (funcall clue-project-root-function)))
-    (setq clue--copied-location
-          `(:file ,file :line ,(line-number-at-pos) :root ,project))))
+    (clue-copy-location file (line-number-at-pos) project)))
 
 (defun clue-paste ()
   "Paste the copied link."
@@ -271,6 +270,16 @@ See also `clue-auto-enable-modes'."
       (goto-char (point-min))
       (when (re-search-forward clue--link-regexp nil t)
         (clue-mode)))))
+
+;;;; APIs
+
+(defun clue-copy-location (file line &optional project)
+  "Copy a location.
+FILE is the full path, LINE is the line number of the location in
+that file.  PROJECT is the full path of the project root of that
+file (can be nil)."
+  (setq clue--copied-location
+        `(:file ,file :line ,line :root ,project)))
 
 (provide 'clue)
 

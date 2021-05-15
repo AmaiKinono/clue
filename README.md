@@ -132,6 +132,13 @@ An example configuration using `use-package` is:
    clue-auto-enable-modes '(markdown-mode))
 ```
 
+## API
+
+Packages for code reading may want to integrate with Clue. For example,
+it may show the user a list of locations, and the user may want to copy
+& paste one of them as a Clue link. Such thing can be implemented using
+the API `clue-copy-location`.
+
 ## Recommendation
 
 The logo in this file is inspired by the TV series [*Furuhata
