@@ -69,8 +69,8 @@ In a code file, type `M-x clue-copy` to copy the current location.
 
 In your note file, type `M-x clue-paste` to paste the just-copied
 location. Emacs may ask you if you want to set the project root. Answer
-"y". You may notice something is inserted at the end of your note. Let's
-not worry about it for now.
+"y". You may notice something is inserted at the end of your note. It's
+a "metalink" and we'll explain it later.
 
 Now, clicking or pressing `RET` on a link will take you that location.
 
