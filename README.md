@@ -136,8 +136,11 @@ An example configuration using `use-package` is:
 
 Packages for code reading may want to integrate with Clue. For example,
 it may show the user a list of locations, and the user may want to copy
-& paste one of them as a Clue link. Such thing can be implemented using
-the API `clue-copy-location`.
+& paste one of them as a Clue link. Clue offers 2 APIs for such purpose:
+
+- `clue-copy-location`: Copy the location. The link to it can then be
+  pasted by `clue-paste`.
+- `clue-paste-location`: Paste the location directly as a link.
 
 ## Recommendation
 

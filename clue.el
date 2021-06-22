@@ -281,6 +281,15 @@ file (can be nil)."
   (setq clue--copied-location
         `(:file ,file :line ,line :root ,project)))
 
+(defun clue-paste-location (file line &optional project)
+  "Paste a link for a location.
+FILE is the full path, LINE is the line number of the location in
+that file.  PROJECT is the full path of the project root of that
+file (can be nil)."
+  (let ((clue--copied-location
+         `(:file ,file :line ,line :root ,project)))
+    (clue-paste)))
+
 (provide 'clue)
 
 ;; Local Variables:
