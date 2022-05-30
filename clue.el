@@ -40,6 +40,7 @@
 
 ;;;; Libraries
 
+(require 'project)
 (require 'rx)
 (require 'subr-x)
 
@@ -76,6 +77,21 @@ major mode is."
   "Keymap that's enabled on links."
   :type 'keymap)
 
+;;;; Project
+
+;; Suppress the compilation warning that `project-root' is not defined.
+(declare-function project-root "project")
+
+(defun clue-project-root ()
+  "Return the path of project root of current buffer.
+This uses `project-current' internally."
+  (when-let ((project (project-current nil)))
+    (if (fboundp #'project-root)
+        (project-root project)
+      ;; Suppress the warning in Emacs master that `project-roots' is
+      ;; deprecated.
+      (car (with-no-warnings (project-roots project))))))
+
 ;;;; Internals
 
 (defvar clue--link-regexp
@@ -94,12 +110,6 @@ It's a plist, with props/vals being:
 - `:file': Full path of current file.
 - `:line': The line number of current line.
 - `:root': The project root of current file.")
-
-(defun clue-project-root ()
-  "Return the path of project root of current buffer.
-This uses `project-current' internally."
-  (when-let ((project (project-current nil)))
-    (expand-file-name (cdr project))))
 
 (defun clue-recenter-and-blink ()
   "Recenter point and blink after point.
